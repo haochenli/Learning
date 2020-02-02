@@ -13,3 +13,20 @@ function deepTraversal(node) {
   }    
   return nodeList;  
 }   
+
+
+
+
+const traverse = (ndRoot) => {
+  const queue = [ndRoot];
+  while (queue.length) {        
+      const node = queue.shift();
+      printInfo(node);
+
+      if (!node.children.length) {
+          continue;
+      }
+
+      Array.from(node.children).forEach(x => queue.push(x));    
+    }
+};
