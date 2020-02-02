@@ -12,9 +12,7 @@ function deepTraversal(node) {
       }  
   }    
   return nodeList;  
-}   
-
-
+}
 
 
 const traverse = (ndRoot) => {
@@ -29,4 +27,4 @@ const traverse = (ndRoot) => {
 
       Array.from(node.children).forEach(x => queue.push(x));    
     }
-};
+}
