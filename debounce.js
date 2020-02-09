@@ -13,5 +13,5 @@ let logger2 = () => {console.log('debounce2')}
 let debounceLogger = debounce(logger, 2000)
 setInterval(() => {debounceLogger()}, 3000)
 
-let debounceLogger2 = debounce(logger2, 2000)
-setInterval(() => {debounceLogger2()}, 1000)
+// let debounceLogger2 = debounce(logger2, 2000)
+// setInterval(() => {debounceLogger2()}, 1000)

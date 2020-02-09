@@ -17,8 +17,24 @@ Function.prototype.apply = function(context, args) {
   return result
 }
 
-Function.prototype.bind = function(context, ...bindArgs) {
+Function.prototype.bind1 = function(context, ...bindArgs) {
   context = context === undefined || context === null ? window : Object(context)
   return (...args) => this.apply(context, [...bindArgs, ...args])
 }
 
+Function.prototype.bind2 = function (context, ...bindArgs) {
+  context = context === undefined || context === null ? window : Object(context)
+  return (...args) => this.call(context, ...bindArgs, ...args)  
+}
+
+
+let obj = {
+  name: "一个"
+}
+
+function allName(firstName, lastName) {
+  console.log(`我的全名是“${firstName}${this.name}${lastName}”`)
+}
+
+// allName('我是', '前端') //我的全名是“我是前端”  this指向window
+allName.apply(obj, ['我是', '前端']) //我的全名是“我是一个前端” this指向obj

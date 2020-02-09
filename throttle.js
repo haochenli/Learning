@@ -15,7 +15,7 @@ function throttle2(f, t=500) {
     if(!canRun) return
     canRun = false
     setTimeout(() => {
-      f.apply(this.args)
+      f.apply(args)
       canRun = true
     }, t)
   }
@@ -24,5 +24,5 @@ function throttle2(f, t=500) {
 
 let logger = (args) => console.log(`throttle`);
 // throttle: call the logger at most once every two seconds
-let throttledLogger = throttle2(logger, 100); 
-setInterval(() => {throttledLogger()}, 1000)
+let throttledLogger = throttle2(logger, 2000); 
+setInterval(() => {throttledLogger()}, 100)
