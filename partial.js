@@ -22,9 +22,13 @@ function partialEz(fn) {
   var args = [].slice.call(arguments, 1);
   return function() {
       var newArgs = args.concat([].slice.call(arguments));
+      console.log(newArgs)
       return fn.apply(this, newArgs);
   };
 }
 var subtract = function(a, b ) { return b - a};
 subFrom20 = partial(subtract, _, 20)
 console.log(subFrom20(5))
+
+let sunFrom20_2 = partialEz(subtract, 20)
+console.log(sunFrom20_2(4))

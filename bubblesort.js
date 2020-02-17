@@ -14,5 +14,3 @@ function bubbleSort(array) {
 
 
 let test = [1,3,4,5,2,7,6]
-
-console.log(quickSort(test))
