@@ -38,3 +38,7 @@ function allName(firstName, lastName) {
 
 // allName('我是', '前端') //我的全名是“我是前端”  this指向window
 allName.apply(obj, ['我是', '前端']) //我的全名是“我是一个前端” this指向obj
+
+
+// js的基本类型： number string undefined Symbol null boolean Biginit
+// 判断类型 Object.prototype.toString.call('') 
