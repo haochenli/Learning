@@ -64,6 +64,10 @@ https://segmentfault.com/a/1190000011145364
 后台配置：
  'Access-Control-Allow-Credentials': 'true',     
  'Access-Control-Allow-Origin': 'http://www.domain1.com',
+
+ 其中还分为简单请求和非简单请求：
+ 非简单请求中会有一次预请求，比方说POST或DELETE请求：
+ 预请求的方法是OPTIONS，其中还会带上origin字段，Access-Control-Request-Method，Access-Control-Request-Headers字段等，如果服务器统一的话会返回Access-Control-Allow-Origin字段。
 # nginx代理跨域
 # nodejs中间件代理跨域
 中间用nodejs建立一个proxy实现数据的转发

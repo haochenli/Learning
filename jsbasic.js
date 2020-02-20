@@ -42,3 +42,4 @@ allName.apply(obj, ['我是', '前端']) //我的全名是“我是一个前端�
 
 // js的基本类型： number string undefined Symbol null boolean Biginit
 // 判断类型 Object.prototype.toString.call('') 
+// service-worker: run script in background in js
