@@ -23,3 +23,12 @@ localStorage和sessionStorage：可以保存5MB的信息。
 cookie：每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题
 
 localStorage和sessionStorage：仅在客户端（即浏览器）中保存，不参与和服务器的通信
+
+## cookie:
+浏览器发送请求之后，服务器返回set-Cookie，告诉浏览器把这个cookie给设置上，之后浏览器的请求都会带上这个cookie。
+
+## session
+服务器返回的cookie中会带着sessionID，而该sessionId绑定的相关信息会保存在服务器上，用户每次发请求带着cookie和其内的sessionId，服务器根据sessionId返回用户的状态。
+
+## token
+服务器生成一个token，并且存放在session之中，浏览器端获取到token之后，存放在本地（attaker比较困难获取到），每次发送请求的时候都带上
