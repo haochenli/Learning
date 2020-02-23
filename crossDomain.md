@@ -72,6 +72,7 @@ https://segmentfault.com/a/1190000011145364
 # nodejs中间件代理跨域
 中间用nodejs建立一个proxy实现数据的转发
 # WebSocket协议跨域
+webSocket是一种通讯协议，基于TCP，双工通讯，例如ws：ws://example.com:80/some/path
 前端代码如下：
 ``` html
     <div>user input：<input type="text"></div>
