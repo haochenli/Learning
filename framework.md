@@ -27,6 +27,19 @@
 - 合并操作，调用 component 的 setState 方法的时候, React 将其标记为 dirty.到每一个事件循环结束, React 检查所有标记 dirty 的 component 重新绘制.
 - 选择性子树渲染。开发人员可以重写 shouldComponentUpdate 提高 diff 的性能。
 
+### Vue从data的change到页面渲染
+
+- 当new一个Vue实例的时候，会执行一个this._init的方法，初始化生命周期、初始化事件、初始化数据initState等。
+- _initState中有一个_initData, _initData函数将当前传入的data赋值给vm._data。vm是当前vue实例。然后会执行代理函数proxy,当我们访问vm[key] 就会通过get方法去访问vm[sourceKey][key] 即vm._data[key]。
+- 挂载$mount方法，通过自定义Render方法、template、el等生成Render函数。如果传入了模版(template)就将模版里面的内容编译成render函数，否则将传入的el对应的元素的内容编译成render函数。编译是调用compileToFunctions函数完成的。也可以自己手写render函数，可以减少编译这一环节。其中render渲染函数的优先级最高，template次之且需编译成渲染函数，而挂载点el属性对应的元素若存在，则在前两者均不存在时，其outerHTML才会用于编译与渲染。
+- 生成render函数后，调用_createElement函数生成vnode。
+- 将虚拟DOM映射为真实DOM页面上。
+
+作者：The question
+链接：https://juejin.im/post/5ce263bf518825645c34cd4e
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
 ## Vue和React的相似之处
 - Virtual Dom  
 Vue宣称可以更快地计算出Virtual DOM的差异，这是由于它在渲染过程中，会跟踪每一个组件的依赖关系，不需要重新渲染整个组件树。  
