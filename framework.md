@@ -35,11 +35,6 @@
 - 生成render函数后，调用_createElement函数生成vnode。
 - 将虚拟DOM映射为真实DOM页面上。
 
-作者：The question
-链接：https://juejin.im/post/5ce263bf518825645c34cd4e
-来源：掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
 ## Vue和React的相似之处
 - Virtual Dom  
 Vue宣称可以更快地计算出Virtual DOM的差异，这是由于它在渲染过程中，会跟踪每一个组件的依赖关系，不需要重新渲染整个组件树。  
