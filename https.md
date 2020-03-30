@@ -17,11 +17,15 @@
 数字签名用来做证书防伪，当服务器向CA申请证书的时候会对其摘做hash转换成一个用来防伪的“公戳”，就是数字签名。浏览器用其内置的公钥对证书进行解密与发过来的证书中被CA私钥（第三方拿不到CA私钥）加密的信息进行比较
 
 
-## http2.0 vs http1.0
+## http2.0 vs http1.1
 - 多路复用Multiplexing 一个Tcp中多个http请求是并行的，http1中默认有一个pipline开启导致无法并行，因为无法区分先后。
-- HACK算法加密header/数据压缩 二进制编码传输
-- 服务器推送
+- HPACK算法加密并且压缩header，服务端和客户端同时缓存一些重复使用的header资源，最终实现拼接。
+- 数据压缩 二进制编码传输
+- 服务器推送 (比方说客户端请求依赖A，同时依赖A需要依赖B，server会在请求依赖B之前将资源发给客户端)
 - 2.0支持长链接，1.0不支持，除非开启Connection: keep-alive。
+- network panel中有一个waterfall的TTFB，意思是Time to first byte： 从请求到接受第一个字节所用的时间
+
+## 
 
 ### TCP协议三次握手
 - A发送给B（服务器）请求连接，SYN = 1，seq = x（A的序列号）
