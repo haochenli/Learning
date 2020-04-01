@@ -42,4 +42,7 @@ allName.apply(obj, ['我是', '前端']) //我的全名是“我是一个前端�
 
 // js的基本类型： number string undefined Symbol null boolean Biginit
 // 判断类型 Object.prototype.toString.call('') 
-// service-worker: run script in background in js
+// service-worker: run script in background in 
+// 箭头函数没有this， 所以当箭头函数被call的时候，会在他的excute context的链上找到上一个this, 箭头函数也没有arguments，并且不能被call，bind等转换this
+  context = context === undefined || context === null ? window : Object(context)当
+  context = context === undefined || context === null ? window : Object(context)
