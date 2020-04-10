@@ -24,7 +24,7 @@ const oFun = function(){
 
 ``` js
    function Foo() {}
-   let f1 = new Person();
+   let f1 = new Foo;
 ```
 <img alt="__proto__和prototype的区别" class="lazyload inited loaded" data-src="https://user-gold-cdn.xitu.io/2019/3/5/1694cb5d23b31105?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="680" data-height="546" src="https://user-gold-cdn.xitu.io/2019/3/5/1694cb5d23b31105?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 
