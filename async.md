@@ -40,3 +40,13 @@ f1.on('done', f2)
 - 在 then中使用了return，那么 return 的值会被Promise.resolve() 包装
 - then中可以不传递参数，如果不传递会透到下一个then中
 - catch 会捕获到没有捕获的异常
+
+
+- await async
+- 一个函数如果加上 async ，那么该函数就会返回一个 Promise
+``` js
+  async function async1() {
+    return "1"
+  }
+  console.log(async1()) // -> Promise {<resolved>: "1"}
+```
