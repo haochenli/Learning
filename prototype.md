@@ -35,3 +35,22 @@ const oFun = function(){
 
 
 <img src="https://github.com/mqyqingfeng/Blog/raw/master/Images/prototype5.png" alt="原型链示意图" style="max-width:100%;">
+
+当new一个实例时发生的事情
+``` js
+  var obj = new Object(),
+
+    Constructor = [].shift.call(arguments);
+
+    obj.__proto__ = Constructor.prototype;
+
+    Constructor.apply(obj, arguments);
+
+    return obj;
+```
+1. 新建一个对象
+2. 新建对象的原型指向构造函数的原型
+3. 将构造函数的this指向新的obj，并执行该构造函数
+4。返回构造函数
+
+- 构造函数本身没有返回值，但是如果返回值是一个对象，则最终生成的实例为这个对象， 如果返回值是一个基本类型，则实例该是什么样子就还是什么样子
