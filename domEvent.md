@@ -1,0 +1,3 @@
+- addEventListener的第三个参数为capture：Booelean，控制是在捕获还是冒泡阶段来trigger handler
+- 当浏览器在mobile的情况下，用户触发一个touch事件（不管touchstart、touchend、touchmove）浏览器会同时模拟并生成一个click事件(mdn说为了支持某些只支持鼠标事件的网站)
+- 在touch事件传递的过程中，如果使用了preventDefault的话，之后浏览器将不会模拟mouse和click事件。
