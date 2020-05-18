@@ -11,6 +11,6 @@ function bubbleSort(array) {
   return array
 }
 
-
+export default bubbleSort
 
 let test = [1,3,4,5,2,7,6]
