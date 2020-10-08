@@ -1,3 +1,43 @@
+// 在node11之后和浏览器的行为统一了，都是每执行一个宏任务就执行完微任务队列。
+// 例子如下
+function test () {
+   console.log('start')
+    setTimeout(() => {
+        console.log('children2')
+        Promise.resolve().then(() => {console.log('children2-1')})
+    }, 0)
+    setTimeout(() => {
+        console.log('children3')
+        Promise.resolve().then(() => {console.log('children3-1')})
+    }, 0)
+    Promise.resolve().then(() => {console.log('children1')})
+    console.log('end') 
+}
+
+test()
+
+// 以上代码在node11以下版本的执行结果(先执行所有的宏任务，再执行微任务)
+// start
+// end
+// children1
+// children2
+// 此时将微任务 Promise.resolve().then(() => {console.log('children2-1')}) 放入任务队列
+
+// children3
+// 此时将微任务 Promise.resolve().then(() => {console.log('children3-1')}) 放入任务队列
+// children2-1
+// children3-1
+
+// 以上代码在node11及浏览器的执行结果(顺序执行宏任务和微任务)
+// start
+// end
+// children1
+// ----- 一个宏任务下的微任务
+// children2
+// children2-1
+// ------ 另一个宏任务下的微任务
+// children3
+// children3-1
 
 async function a1 () {
   console.log('a1 start')
