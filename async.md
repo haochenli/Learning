@@ -53,66 +53,53 @@ f1.on('done', f2)
 
 - 实现一个promise
 ``` js
-class Promise1 {
-  constructor(fn) {
-      // 执行队列
-      this.__watchList = [];
-      // 成功结果
-      this.__success_res = null;
-      // 失败结果
-      this.__error_res = null;
-      // 状态
-      this.__status = "";
-      // 下面传入的第一个参数是resolve， 第二个参数是reject
-      fn((...args) => {
-          // 保存成功数据
-          this.__success_res = args;
-          // 状态改为成功
-          this.__status = "success";
-          // 若为异步则回头执行then成功方法
-          this.__watchList.forEach(element => {
-              element.fn1(...args);
-          });
-      }, (...args) => {
-          // 保存失败数据
-          this.__error_res = args;
-          // 状态改为失败
-          this.__status = "error";
-          // 若为异步则回头执行then失败方法
-          this.__watchList.forEach(element => {
-              element.fn2(...args);
-          });
-      });
-  }
+class PromiseSelf {
+    constructor(fn) {
+        this._success_res;
+        this._failed_res;
+        this._watchList= [];
+        this._status;
+        fn((args) => {
+            this._status = 'success';
+            this._success_res = args
+            this._watchList.forEach(element => {
+                element.successFuc(args)
+            });
+        }, (args) => {
+            this._status = 'failed';
+            this._failed_res = args
+            this._watchList.forEach(element => {
+                element.failedFunc(args)
+            });
+        })
+    }
 
-  // then 函数
-  then(fn1, fn2) {
-      if (this.__status === "success") {
-          fn1(...this.__success_res);
-      } else if (this.__status === "error") {
-          fn2(...this.__error_res);
-      } else {
-          this.__watchList.push({
-              fn1,
-              fn2
-          })
-      }
-  }
+    then(successFuc, failedFunc) {
+        if(this._status === 'success') {
+            successFuc(this._success_res)
+        } else if (this._status === 'failed'){
+            failedFunc(this._failed_res)
+        } else {
+            this._watchList.push({
+                successFuc,
+                failedFunc
+            })
+        }
+    }
 }
 
-Promise1.all = function(arr) {
-    // 存放结果集
+PromiseSelf.all = function (arr) {
     let result = [];
-    return Promise1(function(resolve, reject) {
+    return new PromiseSelf((resolve, reject) => {
         let i = 0;
-        // 进行迭代执行
+        next()
         function next() {
             arr[i].then(function(res) {
                 // 存放每个方法的返回值
                 result.push(res);
                 i++;
                 // 若全部执行完
-                if (i === result.length) {
+                if (i === arr.length) {
                     // 执行then回调
                     resolve(result);
                 } else {
@@ -123,5 +110,25 @@ Promise1.all = function(arr) {
         }
     })
 }
+
+var temp = new PromiseSelf((resolve, reject) => {
+    setTimeout(() => {
+        resolve('done')
+    }, 2000)
+})
+
+var temp2 = new PromiseSelf((resolve, reject) => {
+    setTimeout(() => {
+        // resolve('done2')
+        // throw new Error('shit')
+        reject('shit')
+    }, 1000)
+})
+
+PromiseSelf.all([temp, temp2]).then(res => {
+    console.log(res)
+}, reason => {
+    console.log('rejected because ' + reason)
+})
 
 ```
