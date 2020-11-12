@@ -99,4 +99,29 @@ class Promise1 {
       }
   }
 }
+
+Promise1.all = function(arr) {
+    // 存放结果集
+    let result = [];
+    return Promise1(function(resolve, reject) {
+        let i = 0;
+        // 进行迭代执行
+        function next() {
+            arr[i].then(function(res) {
+                // 存放每个方法的返回值
+                result.push(res);
+                i++;
+                // 若全部执行完
+                if (i === result.length) {
+                    // 执行then回调
+                    resolve(result);
+                } else {
+                    // 继续迭代
+                    next();
+                }
+            }, reject)
+        }
+    })
+}
+
 ```
