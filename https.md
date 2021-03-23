@@ -18,11 +18,11 @@
 
 
 ## http2.0 vs http1.1
-- 多路复用Multiplexing 一个Tcp中多个http请求是并行的，http1中默认有一个pipline开启导致无法并行，因为无法区分先后。
+- http2.0支持多路复用Multiplexing 一个Tcp中多个http请求是并行的，且可以区分优先级。http1.0中默认有一个pipline（1.1中是connection：open为默认）开启后可以让tcp长连接，但是http请求是串行的，可能会导致队头阻塞。
 - HPACK算法加密并且压缩header，服务端和客户端同时缓存一些重复使用的header资源，最终实现拼接。
 - 数据压缩 二进制编码传输
 - 服务器推送 (比方说客户端请求依赖A，同时依赖A需要依赖B，server会在请求依赖B之前将资源发给客户端)
-- 2.0支持长链接，1.0不支持，除非开启Connection: keep-alive。
+- 2.0支持长链接，1.0不支持，除非开启Connection: keep-alive，
 - network panel中有一个waterfall的TTFB，意思是Time to first byte： 从请求到接受第一个字节所用的时间
 
 ## 
