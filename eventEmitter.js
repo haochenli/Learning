@@ -46,7 +46,7 @@ class EventEmitter {
     }
   }
 
-  once(event) {
+  once(event listener) {
     this.on(event, function g () {
       this.off(event, g);
       listener.apply(this, arguments);
