@@ -22,6 +22,25 @@ function throttle2(f, t=500) {
 }
 
 
+function throttle(fn, time, immediate) {
+  let throttleId
+  return (...args) => {
+    if(immediate) {
+      if(throttleId) return
+      fn.apply(this, args)
+      throttleId = setTimeout(() => {
+        throttleId = null
+      },time)        
+    } else {
+      if(throttleId) return
+      throttleId = setTimeout(() => {
+        fn.apply(this, args)
+        throttleId = null
+      }, time)
+    }
+  }
+}
+
 let logger = (args) => console.log(`throttle`);
 // throttle: call the logger at most once every two seconds
 let throttledLogger = throttle2(logger, 2000); 
