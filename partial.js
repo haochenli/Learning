@@ -5,7 +5,7 @@ function partial(fn) {
       var position = 0, len = args.length;
       console.log(args)
       for(var i = 0; i < len; i++) {
-        if(args[i] === _) {
+        if(args[i] === '_') {
           args[i] = arguments[position++]
         } else {
           args[i] = args[i]
@@ -27,7 +27,7 @@ function partialEz(fn) {
   };
 }
 var subtract = function(a, b ) { return b - a};
-subFrom20 = partial(subtract, _, 20)
+subFrom20 = partial(subtract, '_', 20)
 console.log(subFrom20(5))
 
 let sunFrom20_2 = partialEz(subtract, 20)
