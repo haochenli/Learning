@@ -48,3 +48,14 @@
 ### Loader和plugins的区别：
 - loader，它是一个转换器，比方说css-loader的作用就是将css转换成js的形式，比如将less转换成css文件，单纯的文件转换过程
 - plugin是一个扩展器，它丰富了webpack本身，针对是loader结束后，webpack打包的整个过程，它并不直接操作文件，而是基于事件机制工作，会监听webpack打包过程中的某些节点，执行广泛的任务（emit after-compile  watch-run）
+
+
+### webpack和rollup的区别：
+- webpack支持code spliting，code spliting是可以生成多个bundle，这个意味着例如在首页加载的时候能更快的响应，并且可以实现按需加载。 但是rollup不支持。
+- webpack支持HMR，rollup不支持。
+- webpack的浏览器兼容性更强，因为它自己实现了require的方法。而rollup使用了es6的模块机制，效率更高。
+- 所以综上：如果你的app需要引入很多commonjs模块webpack更合适，或者你的app需要code-spliting/HMR的话选择webpack。如果你的app大多依赖于es6，rollup更合适。
+
+
+
+
