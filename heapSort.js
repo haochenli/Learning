@@ -30,7 +30,7 @@ var a = [ 9, 10, 2, 1, 5, 4, 3, 6, 8, 7, 13 ];
  }
  
  function heapify(a) {
-     for (var i = a.length; i >= 0; i--) {
+     for (var i = a.length - 1; i >= 0; i--) {
          max_heapify(a, i, a.length);
      }
  }
