@@ -41,4 +41,22 @@ function partition(arr, left, right) {
 
 let test = [1,3,4,5,2,7,6]
 
+
+function quickSort2(arr) {
+    if(arr.length <= 1) return arr
+    let pivot = Math.floor(arr.length / 2)
+    let pivotValue = arr.splice(pivot, 1)
+    let left = []
+    let right = []
+    for(let i = 0 ; i < arr.length ; i ++) {
+      if(pivotValue > arr[i]) {
+        left.push(arr[i])
+      } else {
+        right.push(arr[i])
+      }
+    }
+    return quickSort2(left).concat(pivotValue, quickSort2(right))
+}
+
+
 console.log(quickSort(test))
