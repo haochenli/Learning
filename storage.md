@@ -1,5 +1,12 @@
 ## cookie
-主要用途有保存登录信息，比如你登录某个网站市场可以看到“记住密码”
+- 主要用途有保存登录信息，比如你登录某个网站市场可以看到“记住密码”    
+
+- cookie是可以跨域的，但是要前端设置（withCredentials:true）
+后端也要设置（"Access-Control-Allow-Credentials“, “true” 
+"Access-Control-Allow-Origin", ”yourdomain“）才能够实现cookie的跨域
+
+
+
 ## localStorage
 除非主动删除，否则永久保存
 
