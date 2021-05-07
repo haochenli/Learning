@@ -1,5 +1,12 @@
 ## cookie
-主要用途有保存登录信息，比如你登录某个网站市场可以看到“记住密码”
+- 主要用途有保存登录信息，比如你登录某个网站市场可以看到“记住密码”    
+
+- cookie是可以跨域的，但是要前端设置（withCredentials:true）
+后端也要设置（"Access-Control-Allow-Credentials“：“true” 
+"Access-Control-Allow-Origin"：”yourdomain“不能是*）才能够实现cookie的跨域
+
+
+
 ## localStorage
 除非主动删除，否则永久保存
 
@@ -19,7 +26,7 @@ cookie：4KB左右
 
 localStorage和sessionStorage：可以保存5MB的信息。
 
-## http请求：
+## http请求
 cookie：每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题
 
 localStorage和sessionStorage：仅在客户端（即浏览器）中保存，不参与和服务器的通信
