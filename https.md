@@ -25,7 +25,8 @@
 - 2.0支持长链接，1.0不支持，除非开启Connection: keep-alive，
 - network panel中有一个waterfall的TTFB，意思是Time to first byte： 从请求到接受第一个字节所用的时间
 
-## 
+## http vs https
+- https = http + ssl/tls 
 
 ### TCP协议三次握手
 - A发送给B（服务器）请求连接，SYN = 1，seq = x（A的序列号）
