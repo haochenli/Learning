@@ -1,5 +1,17 @@
 - XSS
-cross site script: 用户在信任的网站中被执行了一段恶意js
+cross site script: 用户在信任的网站中被执行了一段恶意js  
+可以分成两类
+- 1.持久层： 代码被写进数据库
+- 2.非持久层 ： 一般是通过修改URL的参数方式加入攻击代码，比方说是一个搜索页面，搜索的内容会直接append到url中作为请求参数，然后再将请求参数加到dom上。
+``` html
+    <!-- http://www.domain.com?name=<script>alert(1)</script> -->
+    <div>{{name}}</div>
+```
+- 防御方法：
+1.转义字符： <，>等转义  
+2.CSP：通过设置HTTP Header中的 Content-Security-Policy: default-src 'self'
+3.HtppOnly ： 实际上HttpOnly并非是为了防御XSS攻击，而是XSS攻击之后的Cookie劫持。
+
 
 分类有三种：
 1. 反射型： 构造恶意URL让用户主动点击
@@ -20,5 +32,16 @@ Cross-site request forgery： CSRF 顾名思义，是伪造请求，冒充用户
 
 3. JWT：用户正常在A网站授权的同时，服务器生成一个jwt将其发送给用户 在客户端请求的时候除了cookie也要带上这个jwt(比方说放入url中)作为验证
 
+4. Samesite Cookie：HTTP响应头中有Set-Cookie属性，属性有两个值，Strict 和lax，当设置为Strict的时候，伪造的请求是不会带上本地的cookie进行请求，所以这时候CSRF攻击不会生效。
 
-https://mp.weixin.qq.com/s/qWVdMQkvP8l79ltxr4XdKQ
+
+- 点击劫持
+点击劫持是一种视觉欺骗的攻击手段。攻击者将需要攻击的网站通过 iframe 嵌套的方式嵌入自己的网页中，并将 iframe 设置为透明，在页面中透出一个按钮诱导用户点击。
+
+- 防御方法：
+X-FRAME-OPTIONS
+JS防御
+①X-FRAME-OPTIONS：X-FRAME-OPTIONS 是一个 HTTP 响应头，在现代浏览器有一个很好的支持。这个 HTTP 响应头 就是为了防御用 iframe 嵌套的点击劫持攻击。该响应头有三个属性可选：
+DENY，表示页面不允许通过 iframe 的方式展示
+SAMEORIGIN，表示页面可以在相同域名下通过 iframe 的方式展示
+ALLOW-FROM，表示页面可以在指定来源的 iframe 中展示
