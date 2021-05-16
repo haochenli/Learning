@@ -59,5 +59,33 @@
 - 所以综上：如果你的app需要引入很多commonjs模块webpack更合适，或者你的app需要code-spliting/HMR的话选择webpack。如果你的app大多依赖于es6，rollup更合适。
 
 
+### 如何优化webpack配置
+#### 缩小文件查找范围
 
+优化loader
+优化resolve.modules
+优化resolve.mainFields
+优化resolve.alias
+优化resolve.extensions
+优化module.noPaese
+
+使用DllPlugin
+
+基础模块抽离，打包到动态链接库
+需要使用模块，直接去动态链接库查找
+
+使用HappyPack
+
+单线程变多进程,使用ParallelUglifyPlugin开启多进程压缩代码，并行执行
+
+使用CDN加速,静态资源放到CDN服务器上面
+
+Tree Shaking, 剔除无用的代码
+
+提取公共代码,防止相同资源重复加载
+减少网络流量及服务器成本
+
+使用prepack
+
+编译代码时提前计算结果放到编译后的结果中，而不是在代码运行才求值
 

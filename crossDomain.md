@@ -20,6 +20,7 @@
 ```
 只能实现get一种请求
 # document.domain + iframe跨域
+针对主域相同，子域不同的情况下，可以通过设置document.domain为相同值来实现跨域。
 https://segmentfault.com/a/1190000011145364
 # location.hash + iframe
 # window.name + iframe跨域

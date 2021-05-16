@@ -59,19 +59,23 @@ class MyPromise {
   }
 
   resolve = (value) => {
-    this.state = 'fulfill'
-    this.value = value
-    this.resolveCb.forEach(cb => {
-      cb(this.value)
-    })
+    if(this.state === 'pending') {
+       this.state = 'fulfill'
+      this.value = value
+      this.resolveCb.forEach(cb => {
+        cb(this.value)
+      })
+    }
   }
 
   reject = (err) => {
-    this.state = 'reject'
-    this.value = err
-    this.rejectCb.forEach(cb => {
-      cb(this.value)
-    })
+    if(this.state === 'pending') {
+        this.state = 'reject'
+        this.value = err
+        this.rejectCb.forEach(cb => {
+          cb(this.value)
+        })
+    }
   }
   finally = (cb) => {
     // 调用then相当于将cb放入cb中或者在调用链的最后调用cb
@@ -114,7 +118,7 @@ class MyPromise {
       return result
     }
     static race = (arr) => {
-      return new Promise((resolve, reject) => {
+      return new MyPromise((resolve, reject) => {
           for(let i = 0 ; i < arr.length; i++) {
             arr[i].then(res => {
               resolve(res)
