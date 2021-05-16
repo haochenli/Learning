@@ -3,8 +3,8 @@
 
 - cookie是可以跨域的，但是要前端设置（withCredentials:true）
 后端也要设置（"Access-Control-Allow-Credentials“：“true” 
-"Access-Control-Allow-Origin"：”yourdomain“不能是*）才能够实现cookie的跨域
-
+"Access-Control-Allow-Origin"：”yourdomain“不能是*）才能够实现cookie的跨域，这里跨域
+这里的跨域比方说你在域名为aaa.com的网站上，会有一个向bbb.com的请求，那么你向aaa.com的请求中cookie浏览器会自动处理，但是向bbb.com的跨域请求不会自动携带bbb.com的cookie，需要进行上述配置才行
 
 
 ## localStorage
